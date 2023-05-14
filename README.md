@@ -28,3 +28,10 @@ sail artisan key:generate
 sail artisan migrate --seed
 
 ```
+
+IDE-HELPER
+
+```bash
+sail artisan ide-helper:generate
+sail artisan ide-helper:models
+```
