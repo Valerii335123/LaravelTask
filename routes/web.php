@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +21,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+/** Protected routes */
+Route::middleware('auth')
+    ->group(function () {
+        Route::get('/home', [HomeController::class, 'index'])->name('home');
+        Route::resource('task', TaskController::class)
+            ->only('index', 'show', 'create', 'store', 'edit', 'update','destroy');
+    });
+
+
+
+
